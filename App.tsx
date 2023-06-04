@@ -1,12 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { PaperProvider, Button } from 'react-native-paper';
+
 
 export default function App() {
+  const handlePress = () => {
+    console.log('¡Prueba de console.log!');
+  };
+  
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <PaperProvider>
+      <View style={styles.container}>
+        <Text>BUENAS!!!BUENAS!!!BUENAS!!!BUENAS!!!!!!</Text>
+        <Button mode="contained" onPress={handlePress}>
+          Presionar
+        </Button>
+        <StatusBar style="auto" />
+      </View>
+    </PaperProvider>
   );
 }
 
