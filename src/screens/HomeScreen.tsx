@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { getProducts } from '../services/api';
 import { Product } from '../types'
+import ProductList from '../components/ProductList';
 
 export default function HomeScreen() {
   const [products, setProducts] = useState<Product[]>([])
@@ -21,7 +22,8 @@ export default function HomeScreen() {
 
   return (
     <View style={style.container}>
-      <Text>Home Screen</Text>
+      <Text>Home Screennn</Text>
+      <ProductList products={products} />
     </View>
   );
 }

@@ -6,3 +6,11 @@ export interface Product {
     idCategory: string;
     strCategory: string;
 };
+
+export interface ProductProps {
+    product: Product;
+}
+
+export interface ProductListProps {
+    products: Product[];
+}
