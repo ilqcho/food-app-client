@@ -14,3 +14,10 @@ export interface ProductProps {
 export interface ProductListProps {
     products: Product[];
 }
+
+export interface Category {
+    idCategory: string;
+    strCategory: string;
+    strCategoryThumb: string;
+    strCategoryDescription: string;
+}
