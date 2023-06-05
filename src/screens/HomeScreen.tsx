@@ -3,9 +3,8 @@ import { View, StyleSheet } from 'react-native';
 import { getProducts } from '../services/api';
 import { Product } from '../types'
 import ProductList from '../components/ProductList';
-import { NavigationProp } from '@react-navigation/native';
 
-export default function HomeScreen({ navigation }: { navigation: NavigationProp<any> }) {
+export default function HomeScreen() {
   const [products, setProducts] = useState<Product[]>([])
 
   useEffect(function()  {

@@ -19,8 +19,8 @@ export default function App() {
             header: (props: any) => <NavBar  {...props} />
           }}
         >
-          <Stack.Screen name='HomeScreen' component={HomeScreen} />
-          <Stack.Screen name='CategoryScreen' component={CategoryScreen} />
+          <Stack.Screen name='Home' component={HomeScreen} />
+          <Stack.Screen name='CategoryScreen' component={CategoryScreen} options={({ route }: any) => ({ title: route.params.category.strCategory })}/>
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>

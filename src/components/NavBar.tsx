@@ -4,6 +4,7 @@ import { Category } from '../types';
 import { Appbar, Menu } from 'react-native-paper';
 import { getHeaderTitle } from '@react-navigation/elements';
 import { NavBarProps } from '../types';
+import { View, StyleSheet  } from 'react-native';
 
 export default function NavBar({ navigation, route, options, back }: NavBarProps) {
   
@@ -27,9 +28,8 @@ export default function NavBar({ navigation, route, options, back }: NavBarProps
     }, []);
   
   return (
-    <Appbar.Header>
+    <Appbar.Header style={styles.appHeader}>
       {back ? <Appbar.BackAction onPress={navigation.goBack} /> : null}
-      <Appbar.Content title={ title } />
       {!back ? (
         <Menu
           visible={visible}
@@ -52,7 +52,22 @@ export default function NavBar({ navigation, route, options, back }: NavBarProps
           ))}
         </Menu>
       ) : null}
+      <View style={styles.titleContainer}>
+        <Appbar.Content title={title} />
+      </View>
+      <Appbar.Action icon="cart" size={35} />
     </Appbar.Header>
   );
 };
+
+const styles = StyleSheet.create({
+  appHeader: {
+    marginTop: 10,
+  },
+  titleContainer: {
+    flex: 1,
+    alignItems: 'center',
+    paddingTop: 18,
+  },
+});
 

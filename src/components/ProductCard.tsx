@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Card, Title, Paragraph } from 'react-native-paper';
 import { ProductProps } from '../types';
+import { Appbar } from 'react-native-paper';
 
 const ProductCard: React.FC<ProductProps> = React.memo(({ product }) => {
   return (
@@ -12,7 +13,10 @@ const ProductCard: React.FC<ProductProps> = React.memo(({ product }) => {
         />
         <Card.Content>
           <Title  style={styles.titleContainer}>{product.strMeal}</Title>
-          <Paragraph>Price: ${product.price}</Paragraph> 
+          <View style={styles.priceContainer}>
+            <Paragraph>Price: ${product.price}</Paragraph> 
+            <Appbar.Action icon="cart" size={20} />
+          </View>
         </Card.Content>
       </Card>
   );
@@ -20,7 +24,13 @@ const ProductCard: React.FC<ProductProps> = React.memo(({ product }) => {
 
 const styles = StyleSheet.create({
   titleContainer: {
-    height: 100
+    height: 60
+  },
+  priceContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 8,
   },
 });
 
