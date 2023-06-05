@@ -3,8 +3,9 @@ import { StyleSheet, View, TouchableHighlight } from 'react-native';
 import { Card, Title, Paragraph, IconButton  } from 'react-native-paper';
 import { ProductProps } from '../types';
 import { StateContext } from '../contexts/StateProvider';
+import CartButton from './CartButton';
 
-const ProductCard: React.FC<ProductProps> = React.memo(({ product }) => {
+const ProductCard: React.FC<ProductProps> = React.memo(({ product, isCartScreen }) => {
   const { dispatch } = useContext(StateContext);
   const [selected, setSelected] = useState(false);
 
@@ -12,6 +13,10 @@ const ProductCard: React.FC<ProductProps> = React.memo(({ product }) => {
     setSelected(!selected);
     dispatch({ type: 'ADD_TO_BASKET', payload: product });
   };
+
+  const deleteFromBasket = () => {
+    dispatch({ type: 'DELETE_FROM_BASKET', payload: product });
+  }
 
   return (
       <Card>
@@ -23,16 +28,11 @@ const ProductCard: React.FC<ProductProps> = React.memo(({ product }) => {
           <Title  style={styles.titleContainer}>{product.strMeal}</Title>
           <View style={styles.priceContainer}>
             <Paragraph>Price: ${product.price}</Paragraph> 
-            <TouchableHighlight
-              style={[
-                styles.cartButton,
-                selected ? styles.cartButtonSelected : null,
-              ]}
-              onPress={addToBasket}
-              underlayColor="#E0E0E0"
-            >
-              <IconButton icon="cart" size={20} />
-            </TouchableHighlight>
+            {isCartScreen ? 
+                <CartButton selected={selected} onPress={deleteFromBasket} icon={'delete'} />
+               : (
+                <CartButton selected={selected} onPress={addToBasket} icon={'cart'} />
+              )}
           </View>
         </Card.Content>
       </Card>

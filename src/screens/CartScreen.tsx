@@ -8,12 +8,12 @@ export default function CartScreen () {
   const { basket } = state;
 
     return (
-        <View>
+        <View style={styles.container}>
             {basket.length > 0 ? (
-                <ProductList products={basket} />
+                <ProductList products={basket} isCartScreen={true} />
             ) : (
-                <View style={styles.container}>
-                    <Text>No hay productos en el carrito</Text>
+                <View style={styles.textContainer}>
+                    <Text>There are no products</Text>
                 </View>
             )}
         </View>
@@ -21,8 +21,11 @@ export default function CartScreen () {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    paddingTop: 300,
-  },
+    container: {
+        paddingTop: 20,
+    },
+    textContainer: {
+        alignItems: 'center',
+        paddingTop: 300,
+    },
 });
