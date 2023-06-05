@@ -1,8 +1,13 @@
 import React, { createContext, useReducer } from 'react';
-import { State, Action } from '../types';
+import { State, Action, Product } from '../types';
+
 
 const initialState: State = {
-  basket: [],
+    basket: [],
+};
+
+export const getBasketTotal = (basket: Product[]): number => {
+    return basket.reduce((amount, item) => item.price + amount, 0);
 };
 
 const reducer = (state: State, action: Action): State => {

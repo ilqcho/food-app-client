@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { StyleSheet, View, TouchableHighlight } from 'react-native';
-import { Card, Title, Paragraph, IconButton  } from 'react-native-paper';
+import { StyleSheet, View } from 'react-native';
+import { Card, Title, Paragraph  } from 'react-native-paper';
 import { ProductProps } from '../types';
 import { StateContext } from '../contexts/StateProvider';
 import CartButton from './CartButton';

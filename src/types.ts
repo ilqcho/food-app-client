@@ -42,4 +42,8 @@ export interface NavBarProps {
     back: any;
 };
 
+export interface BalanceProps {
+    balance: number;
+    quantity: number;
+}
 
