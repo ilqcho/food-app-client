@@ -1,12 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { getCategories } from '../services/api';
 import { Category } from '../types';
-import { Appbar, Menu } from 'react-native-paper';
+import { Appbar, Menu, Badge } from 'react-native-paper';
 import { getHeaderTitle } from '@react-navigation/elements';
 import { NavBarProps } from '../types';
-import { View, StyleSheet  } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { StateContext } from '../contexts/StateProvider';
 
 export default function NavBar({ navigation, route, options, back }: NavBarProps) {
+  const { state } = useContext(StateContext);
+  const { basket } = state;
+  const cartItemsCount = basket.length;
+  const badgeContent: string | null = cartItemsCount > 0 ? cartItemsCount.toString() : null;
   
   const title = getHeaderTitle(options, route.name);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -55,7 +60,16 @@ export default function NavBar({ navigation, route, options, back }: NavBarProps
       <View style={styles.titleContainer}>
         <Appbar.Content title={title} />
       </View>
-      <Appbar.Action icon="cart" size={35} />
+      <View>
+        <Appbar.Action
+          icon="cart"
+          size={35}
+          onPress={() => navigation.navigate('Cart')}
+        />
+         <Badge visible={cartItemsCount > 0} size={25} style={styles.badge}>
+            {badgeContent ? badgeContent : 0}
+          </Badge>
+      </View>
     </Appbar.Header>
   );
 };
@@ -68,6 +82,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     paddingTop: 18,
+  },
+  badge: {
+    position: 'absolute',
+    top: 4,
+    right: 0,
   },
 });
 

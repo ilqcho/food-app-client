@@ -17,6 +17,15 @@ export interface ProductListProps {
     products: Product[];
 }
 
+export interface State {
+    basket: Product[];
+}
+  
+export interface Action {
+    type: string;
+    payload?: any;
+}
+
 export interface Category {
     idCategory: string;
     strCategory: string;
