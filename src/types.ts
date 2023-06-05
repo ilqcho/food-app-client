@@ -1,3 +1,5 @@
+import { NavigationProp, RouteProp } from '@react-navigation/native';
+
 export interface Product {
     strMeal: string;
     strMealThumb: string;
@@ -21,3 +23,12 @@ export interface Category {
     strCategoryThumb: string;
     strCategoryDescription: string;
 }
+
+export interface NavBarProps {
+    navigation: NavigationProp<any>
+    route: RouteProp<any>;
+    options: any;
+    back: any;
+};
+
+

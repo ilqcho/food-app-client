@@ -1,12 +1,20 @@
-// import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import { RouteProp } from '@react-navigation/native';
 
-// export default function CategoryScreen ({ route }) {
-//     const { category } = route.params;
+export default function CategoryScreen ({ route }: { route: RouteProp<any> })  {
+    const { category }: any = route.params;
   
-//     return (
-//       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//         <Text>{category.strCategory}</Text>
-//         <Text>{category.strCategoryDescription}</Text>
-//       </View>
-//     );
-// };
+    return (
+        <View style={style.container}>
+            <Text>{ category.strCategory }</Text>
+        </View>
+    );
+    }
+    
+    const style = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+});

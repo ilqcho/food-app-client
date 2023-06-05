@@ -1,28 +1,28 @@
-import { StyleSheet, View } from 'react-native';
-import { PaperProvider } from 'react-native-paper';
 import HomeScreen from './src/screens/HomeScreen';
+import CategoryScreen from './src/screens/CategoryScreen';
 import NavBar from './src/components/NavBar';
-// import { createStackNavigator } from '@react-navigation/stack';
-// import { NavigationContainer } from '@react-navigation/native';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { PaperProvider } from 'react-native-paper';
 
+const Stack = createStackNavigator();
 
 export default function App() {
   
   return (
     <PaperProvider>
-      <View style={styles.container}>
-        <NavBar />
-        <HomeScreen />
-      </View>
+      <NavigationContainer>
+        <Stack.Navigator 
+          initialRouteName='HomeScreen'
+          screenOptions={{
+            header: (props: any) => <NavBar  {...props} />
+          }}
+        >
+          <Stack.Screen name='HomeScreen' component={HomeScreen} />
+          <Stack.Screen name='CategoryScreen' component={CategoryScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </PaperProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
