@@ -1,12 +1,30 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
+import { useState, useEffect, useCallback  } from 'react';
+import { Product } from '../types';
+import { getProductsByCategory } from '../services/api';
+import ProductList from '../components/ProductList';
 
 export default function CategoryScreen ({ route }: { route: RouteProp<any> })  {
     const { category }: any = route.params;
+    const [products, setProducts] = useState<Product[]>([]);
+
+    const fetchProductsByCategory = useCallback(async () => {
+        try {
+          const products = await getProductsByCategory(category.strCategory);
+          setProducts(products);
+        } catch (error) {
+          console.error('Error fetching products by category:', error);
+        } 
+      }, [category]);
+    
+    useEffect(() => {
+        fetchProductsByCategory();
+    }, [fetchProductsByCategory]);
   
     return (
         <View style={style.container}>
-            <Text>{ category.strCategory }</Text>
+            <ProductList products={products} />
         </View>
     );
     }

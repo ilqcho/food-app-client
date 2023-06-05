@@ -14,7 +14,7 @@ export default function HomeScreen({ navigation }: { navigation: NavigationProp<
         const products = await getProducts();
         setProducts(products);
       } catch (e) {
-        console.log(e)
+        console.error('Error fetching categories:', e);
       }
     };
 

@@ -18,8 +18,8 @@ export default function NavBar({ navigation, route, options, back }: NavBarProps
         try {
           const categories = await getCategories();
           setCategories(categories);
-        } catch (error) {
-          console.error('Error fetching categories:', error);
+        } catch (e) {
+          console.error('Error fetching categories:', e);
         }
       };
   
