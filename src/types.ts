@@ -48,3 +48,7 @@ export interface BalanceProps {
     quantity: number;
 }
 
+export interface BillingDetails {
+    email: string;
+}
+
