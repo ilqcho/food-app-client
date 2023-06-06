@@ -1,4 +1,5 @@
 import { NavigationProp, RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 export interface Product {
     strMeal: string;
@@ -52,3 +53,6 @@ export interface BillingDetails {
     email: string;
 }
 
+export interface NavigationScreenProps {
+    navigation: StackNavigationProp<any>;
+}

@@ -1,10 +1,10 @@
 import { CardField, useConfirmPayment } from '@stripe/stripe-react-native';
 import { View, Button } from 'react-native';
 import { BillingDetails } from '../types';
-// const API_BASE_URL = 'http://10.0.2.2:3000';
 import { createPaymentIntent } from '../services/api';
+import { NavigationScreenProps } from '../types';
 
-export default function CheckoutForm() {
+export default function CheckoutForm({ navigation }: NavigationScreenProps) {
 
   const { confirmPayment, loading } = useConfirmPayment();
 
@@ -24,50 +24,16 @@ export default function CheckoutForm() {
       });
 
       if (error) {
-        console.log('Payment confirmation error', error);
+        navigation.navigate('Result', { error: 'error' });
+        // console.log('Payment confirmation error', error);
       } else if (paymentIntent) {
-        console.log('Success from promise', paymentIntent);
+        navigation.navigate('Result', { success: 'success' }); 
+        // console.log('Success from promise', paymentIntent);
       }
     } catch (e) {
       console.error('Error processing payment:', e);
     }
   };
-
-  // const fetchPaymentIntentClientSecret = async () => {
-  //   const response = await fetch(`${API_BASE_URL}/payment/create-payment-intent`, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       currency: 'usd',
-  //     }),
-  //   });
-  //   const {clientSecret} = await response.json();
-  //   return clientSecret;
-  // };
-
-  // const { confirmPayment, loading } = useConfirmPayment();
-  // const handlePayPress = async () => {
-  //   const billingDetails: BillingDetails = {
-  //     email: 'ig.ignaciogarcia.ig@gmail.com',
-  //   };
-
-  //   const clientSecret = await fetchPaymentIntentClientSecret();
-
-  //   const { paymentIntent, error } = await confirmPayment(clientSecret, {
-  //     paymentMethodType: 'Card',
-  //     paymentMethodData: {
-  //       billingDetails,
-  //     },
-  //   });
-
-  //   if(error) {
-  //     console.log('Payment confirmation error', error);
-  //   }else if(paymentIntent){
-  //     console.log('success from promise', paymentIntent);
-  //   }
-  // };
 
   return (
     <View>

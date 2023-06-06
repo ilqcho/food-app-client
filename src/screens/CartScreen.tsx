@@ -3,13 +3,9 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-nati
 import { StateContext } from '../contexts/StateProvider';
 import ProductList from '../components/ProductList';
 import CartBalance from '../components/CartBalance';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { NavigationScreenProps } from '../types';
 
-interface CartScreenProps {
-    navigation: StackNavigationProp<any>;
-  }
-
-export default function CartScreen ({ navigation }: CartScreenProps) {
+export default function CartScreen ({ navigation }: NavigationScreenProps) {
     const { state } = useContext(StateContext);
     const { basket } = state;
     
