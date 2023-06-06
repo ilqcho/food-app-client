@@ -7,6 +7,7 @@ export interface Product {
     price: number;
     idCategory: string;
     strCategory: string;
+    quantity: number;
 };
 
 export interface ProductProps {
@@ -21,6 +22,7 @@ export interface ProductListProps {
 
 export interface State {
     basket: Product[];
+    total: number;
 }
   
 export interface Action {
@@ -43,7 +45,6 @@ export interface NavBarProps {
 };
 
 export interface BalanceProps {
-    balance: number;
     quantity: number;
 }
 
