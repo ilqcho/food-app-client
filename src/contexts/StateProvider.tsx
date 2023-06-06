@@ -7,6 +7,7 @@ const initialState: State = {
     total: 0,
 };
 
+
 export const getBasketTotal = (basket: Product[]): number => {
     return basket.reduce((amount, item) => item.price * item.quantity + amount, 0);
 };
@@ -65,6 +66,12 @@ const reducer = (state: State, action: Action): State => {
                 : item
             ),
             total: state.total - action.payload.price,
+        };
+    case 'RESET_BASKET':
+        return {
+            ...state,
+            basket: [],
+            total: 0,
         };
     default:
       return state;

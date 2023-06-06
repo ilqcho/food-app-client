@@ -26,10 +26,8 @@ export default function CheckoutForm({ navigation }: NavigationScreenProps) {
 
       if (error) {
         navigation.navigate('Result', { error: 'error' });
-        // console.log('Payment confirmation error', error);
       } else if (paymentIntent) {
         navigation.navigate('Result', { success: 'success' }); 
-        // console.log('Success from promise', paymentIntent);
       }
     } catch (e) {
       console.error('Error processing payment:', e);

@@ -3,25 +3,15 @@
 import { View } from 'react-native';
 import PaymentSuccess from '../components/PaymentSucces';
 import PaymentError from '../components/PaymentError';
-import { RouteProp } from '@react-navigation/native';
+import { PaymentResultScreenProps, PaymentResultParams } from '../types';
 
-
-interface PaymentResultParams {
-    success?: string;
-    error?: string;
-}
-  
-type PaymentResultScreenProps = {
-    route: RouteProp<any, 'Result'>;
-};
-
-export default function PaymentResultScreen({ route }: PaymentResultScreenProps ) {
+export default function PaymentResultScreen({ navigation, route }: PaymentResultScreenProps) {
     const { success, error } = route.params as PaymentResultParams;
 
     return (
         <View>
-            {success && <PaymentSuccess />}
-            {error && <PaymentError />}
+            {success && <PaymentSuccess navigation={navigation}/>}
+            {error && <PaymentError navigation={navigation} />}
         </View>
     );
 }

@@ -56,3 +56,13 @@ export interface BillingDetails {
 export interface NavigationScreenProps {
     navigation: StackNavigationProp<any>;
 }
+
+export interface PaymentResultParams {
+    success?: string;
+    error?: string;
+}
+  
+export interface PaymentResultScreenProps {
+    navigation: NavigationScreenProps['navigation'];
+    route: RouteProp<any, 'Result'>;
+};

@@ -1,12 +1,15 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Title, Paragraph, Button, IconButton } from 'react-native-paper';
+import { NavigationScreenProps } from '../types';
 
-const handleRetry = () =>{
-    console.log('navigate to cart')
-}
 
-const PaymentError: React.FC = () => {
+const PaymentError: React.FC<NavigationScreenProps> = ({ navigation }) => {
+
+  const handleRetry = () =>{
+    navigation.navigate('Cart');
+  }
+
   return (
     <View style={styles.container}>
       <IconButton icon='cancel' size={200} iconColor='red' />

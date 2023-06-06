@@ -1,10 +1,16 @@
 import { View, StyleSheet } from 'react-native';
 import { Title, Paragraph, Button, IconButton } from 'react-native-paper';
+import { NavigationScreenProps } from '../types';
+import { useContext } from 'react';
+import { StateContext } from '../contexts/StateProvider';
 
-const PaymentSuccess: React.FC = () => {
+const PaymentSuccess: React.FC<NavigationScreenProps> = ({ navigation }) => {
+    
+    const { dispatch } = useContext(StateContext);
 
     const handleContinue = () => {
-        console.log('navigate home')
+        dispatch({ type: 'RESET_BASKET' });
+        navigation.navigate('Home');
     }
 
     return (
