@@ -46,7 +46,7 @@ export interface NavBarProps {
 };
 
 export interface BalanceProps {
-    quantity: number;
+    quantity?: number;
 }
 
 export interface BillingDetails {

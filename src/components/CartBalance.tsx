@@ -10,7 +10,9 @@ const CartBalance: React.FC<BalanceProps> = ({ quantity }) => {
   const balance = getBasketTotal(basket);
   return (
     <View>
-      <Text style={styles.balanceText}>Total items: {quantity}</Text>
+      {
+        quantity && <Text style={styles.balanceText}>Total items: {quantity}</Text>
+      }
       <Text style={styles.balanceText}>Balance: ${balance}</Text>
     </View>
   );

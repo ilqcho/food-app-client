@@ -1,8 +1,9 @@
 import { CardField, useConfirmPayment } from '@stripe/stripe-react-native';
-import { View, Button } from 'react-native';
+import { View, Button, StyleSheet } from 'react-native';
 import { BillingDetails } from '../types';
 import { createPaymentIntent } from '../services/api';
 import { NavigationScreenProps } from '../types';
+import CartBalance from './CartBalance';
 
 export default function CheckoutForm({ navigation }: NavigationScreenProps) {
 
@@ -36,8 +37,8 @@ export default function CheckoutForm({ navigation }: NavigationScreenProps) {
   };
 
   return (
-    <View>
-
+    <View style={styles.container}>
+      <CartBalance />
       <CardField
         postalCodeEnabled={false}
         placeholders={{
@@ -48,8 +49,8 @@ export default function CheckoutForm({ navigation }: NavigationScreenProps) {
           textColor: '#000000',
         }}
         style={{
-          width: '100%',
-          height: 50,
+          width: '90%',
+          height: 80,
           marginVertical: 30,
         }}
         // onCardChange={(cardDetails) => {
@@ -63,3 +64,10 @@ export default function CheckoutForm({ navigation }: NavigationScreenProps) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    marginTop: 30,
+  },
+});
