@@ -6,8 +6,8 @@ const ProductList: React.FC<ProductListProps> = ({ products, isCartScreen }) => 
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {products.map((product, index) => (
-        <View key={index} style={styles.column}>
+      {products.map((product) => (
+        <View key={product.idMeal} style={styles.column}>
           <ProductCard product={product} isCartScreen={isCartScreen} />
         </View>
       ))}

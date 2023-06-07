@@ -14,6 +14,7 @@ export interface Product {
 export interface ProductProps {
     product: Product;
     isCartScreen?: boolean | null,
+    toggleStyles?: boolean | null,
 }
 
 export interface ProductListProps {

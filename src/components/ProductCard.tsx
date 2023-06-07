@@ -5,7 +5,7 @@ import { ProductProps } from '../types';
 import { StateContext } from '../contexts/StateProvider';
 import CartButton from './CartButton';
 
-const ProductCard: React.FC<ProductProps> = React.memo(({ product, isCartScreen }) => {
+const ProductCard: React.FC<ProductProps> = React.memo(({ product, isCartScreen, toggleStyles }) => {
   const { dispatch } = useContext(StateContext);
 
   const addToBasket = () => {
@@ -27,7 +27,7 @@ const ProductCard: React.FC<ProductProps> = React.memo(({ product, isCartScreen 
   };
 
   return (
-      <Card>
+      <Card style={toggleStyles ? styles.cardContainer : styles.cardContainerDefault}>
         <Card.Cover 
           source={{ uri: product.strMealThumb }} 
           resizeMode="contain"
@@ -55,6 +55,13 @@ const ProductCard: React.FC<ProductProps> = React.memo(({ product, isCartScreen 
 });
 
 const styles = StyleSheet.create({
+  cardContainer: {
+    width: 185,
+    margin: 10,
+  },
+  cardContainerDefault: {
+    marginTop: 10,
+  },
   titleContainer: {
     height: 60
   },

@@ -2,9 +2,9 @@ import { Product, Category, BillingDetails } from '../types';
 
 const API_BASE_URL = 'http://10.0.2.2:3000';
 
-export async function getProducts(): Promise<Product[]> {
+export async function getProducts(page: number, pageSize: number): Promise<Product[]> {
     try {
-        const response = await fetch(`${API_BASE_URL}/products`);
+        const response = await fetch(`${API_BASE_URL}/products?page=${page}&pageSize=${pageSize}`);
         const data = await response.json();
         return data;
     } catch (e) {
