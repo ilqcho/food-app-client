@@ -67,3 +67,15 @@ export interface PaymentResultScreenProps {
     navigation: NavigationScreenProps['navigation'];
     route: RouteProp<any, 'Result'>;
 };
+
+export interface CartButtonProps {   
+    icon: string; 
+    size?: number; 
+    color?: string; 
+    onPress: () => void 
+}
+
+export interface AppButtonProps {
+    title: string;
+    onPress: () => void ;
+}

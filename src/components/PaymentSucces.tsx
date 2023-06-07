@@ -1,8 +1,9 @@
 import { View, StyleSheet } from 'react-native';
-import { Title, Paragraph, Button, IconButton } from 'react-native-paper';
+import { Title, Paragraph, IconButton } from 'react-native-paper';
 import { NavigationScreenProps } from '../types';
 import { useContext } from 'react';
 import { StateContext } from '../contexts/StateProvider';
+import AppButton from './AppButton';
 
 const PaymentSuccess: React.FC<NavigationScreenProps> = ({ navigation }) => {
     
@@ -16,11 +17,9 @@ const PaymentSuccess: React.FC<NavigationScreenProps> = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <IconButton icon='check-circle' size={200} iconColor='green' />
-            <Title>Payment Successful!</Title>
-            <Paragraph style={styles.box}>Thank you for your purchase.</Paragraph>
-            <Button style={styles.box} mode="contained" onPress={handleContinue}>
-                Continue Shopping
-            </Button>
+            <Title style={styles.title} >Payment Successful!</Title>
+            <Paragraph style={styles.paragraph}>Thank you for your purchase.</Paragraph>
+            <AppButton onPress={handleContinue} title='Continue Shopping' />
         </View>
     );
 };
@@ -30,8 +29,12 @@ const styles = StyleSheet.create({
         marginTop: 150,
         alignItems: 'center',
     },
-    box: {
+    title: {
+        fontSize: 25,
+    },
+    paragraph: {
         padding: 10,
+        marginVertical: 10,
     },
 });
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Title, Paragraph, Button, IconButton } from 'react-native-paper';
+import { Title, Paragraph, IconButton } from 'react-native-paper';
 import { NavigationScreenProps } from '../types';
-
+import AppButton from './AppButton';
 
 const PaymentError: React.FC<NavigationScreenProps> = ({ navigation }) => {
 
@@ -13,11 +13,9 @@ const PaymentError: React.FC<NavigationScreenProps> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <IconButton icon='cancel' size={200} iconColor='red' />
-      <Title>Payment Error</Title>
-      <Paragraph style={styles.box}>There was an error processing your payment.</Paragraph>
-      <Button style={styles.box} mode="contained" onPress={handleRetry}>
-        Retry Payment
-      </Button>
+      <Title style={styles.title}>Payment Error</Title>
+      <Paragraph style={styles.paragraph}>There was an error processing your payment.</Paragraph>
+      <AppButton onPress={handleRetry} title='Retry Payment' />
     </View>
   );
 };
@@ -27,8 +25,12 @@ const styles = StyleSheet.create({
       marginTop: 150,
       alignItems: 'center',
   },
-  box: {
+  title: {
+    fontSize: 25,
+  },
+  paragraph: {
       padding: 10,
+      marginVertical: 10,
   },
 });
 

@@ -33,20 +33,20 @@ const ProductCard: React.FC<ProductProps> = React.memo(({ product, isCartScreen,
           resizeMode="contain"
         />
         <Card.Content>
-          <Title style={styles.titleContainer}>{product.strMeal}</Title>
-          <View style={!isCartScreen && styles.priceContainer}>
-            <Paragraph style={{ marginTop: 10, }}>Price: ${product.price}</Paragraph> 
+          <Title style={!isCartScreen ? styles.titleContainer : styles.cartTitleContainer}>{product.strMeal}</Title>
+          <View style={!isCartScreen && styles.priceContainer }>
+            <Paragraph style={{ marginTop: 10, fontSize: 15}}>Price: ${product.price}</Paragraph> 
               {isCartScreen ? (
                   <View style={styles.quantityContainer}>
                     <View style={styles.quantityContainer}>
-                      <CartButton onPress={decreaseQuantity} icon={'minus'} size={15} />
+                      <CartButton onPress={decreaseQuantity} icon={'minus'} size={17} />
                       <Paragraph>{product.quantity}</Paragraph>
-                      <CartButton onPress={increaseQuantity} icon={'plus'} size={15} />
+                      <CartButton onPress={increaseQuantity} icon={'plus'} size={17} />
                     </View>
-                    <CartButton onPress={deleteFromBasket} icon={'delete'} />
+                    <CartButton onPress={deleteFromBasket} icon={'delete'} color='gray' />
                   </View>
                 ) : (
-                  <CartButton onPress={addToBasket} icon={'cart-plus'} />
+                  <CartButton onPress={addToBasket} icon={'cart-plus'} size={30} color='green' />
                 )}
           </View>
         </Card.Content>
@@ -65,6 +65,9 @@ const styles = StyleSheet.create({
   titleContainer: {
     height: 60
   },
+  cartTitleContainer: {
+    height: 35
+  },
   priceContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -76,6 +79,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     height: 40,
+    marginTop: 6,
   },
 });
 

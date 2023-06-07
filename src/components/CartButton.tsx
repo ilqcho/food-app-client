@@ -1,12 +1,13 @@
 import { TouchableHighlight } from 'react-native';
 import { IconButton  } from 'react-native-paper';
+import { CartButtonProps } from '../types';
 
-const CartButton: React.FC<{ icon: string; size?: number; onPress: () => void }> = ({ icon, size, onPress }) => (
+const CartButton: React.FC<CartButtonProps> = ({ icon, size, color, onPress }) => (
   <TouchableHighlight
     onPress={onPress}
     underlayColor="#E0E0E0"
   >
-    <IconButton icon={icon} size={size} />
+    <IconButton icon={icon} size={size} iconColor={color} />
   </TouchableHighlight>
 );
 

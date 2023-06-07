@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { getCategories } from '../services/api';
 import { Category } from '../types';
-import { Appbar, Menu, Badge } from 'react-native-paper';
+import { Appbar, Menu, Badge, Card } from 'react-native-paper';
 import { getHeaderTitle } from '@react-navigation/elements';
 import { NavBarProps } from '../types';
 import { View, StyleSheet } from 'react-native';
@@ -33,50 +33,62 @@ export default function NavBar({ navigation, route, options, back }: NavBarProps
     }, []);
   
   return (
-    <Appbar.Header style={styles.appHeader}>
-      {back ? <Appbar.BackAction onPress={navigation.goBack} /> : null}
-      {!back ? (
-        <Menu
-          visible={visible}
-          onDismiss={closeMenu}
-          anchor={
-            <Appbar.Action
-              icon="dots-vertical"
-              onPress={openMenu}
-            />
-          }>
-            {categories.map((category) => (
-            <Menu.Item
-              key={category.idCategory}
-              onPress={() => {
-                navigation.navigate('CategoryScreen', { category })
-                setVisible(false)
-              }}
-              title={category.strCategory}
-            />
-          ))}
-        </Menu>
-      ) : null}
-      <View style={styles.titleContainer}>
-        <Appbar.Content title={title} />
-      </View>
-      <View>
-        <Appbar.Action
-          icon="cart"
-          size={35}
-          onPress={() => navigation.navigate('Cart')}
-        />
-         <Badge visible={cartItemsCount > 0} size={25} style={styles.badge}>
-            {badgeContent ? badgeContent : 0}
-          </Badge>
-      </View>
-    </Appbar.Header>
+    <Card>
+      <Appbar.Header style={styles.appHeader}>
+        {back ? <Appbar.BackAction size={30} onPress={navigation.goBack} color="#FF8000" /> : null}
+        {!back ? (
+          <Menu
+            visible={visible}
+            onDismiss={closeMenu}
+            style={styles.menu} 
+            anchor={
+              <Appbar.Action
+                color="#FF8000"
+                icon="menu"
+                size={35}
+                onPress={openMenu}
+              />
+            }>
+              {categories.map((category) => (
+              <Menu.Item
+                titleStyle={styles.menuItem}
+                key={category.idCategory}
+                onPress={() => {
+                  navigation.navigate('CategoryScreen', { category })
+                  setVisible(false)
+                }}
+                title={category.strCategory}
+              />
+            ))}
+          </Menu>
+        ) : null}
+        <View style={styles.titleContainer}>
+          <Appbar.Content titleStyle={styles.title} title={title} />
+        </View>
+        <View>
+          <Appbar.Action
+            color="#FF8000" 
+            icon="cart"
+            size={35}
+            onPress={() => navigation.navigate('Cart')}
+          />
+          <Badge visible={cartItemsCount > 0} size={25} style={styles.badge}>
+              {badgeContent ? badgeContent : 0}
+            </Badge>
+        </View>
+      </Appbar.Header>
+    </Card>
   );
 };
 
 const styles = StyleSheet.create({
   appHeader: {
     marginTop: 10,
+  },
+  title: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: '#FF8000'
   },
   titleContainer: {
     flex: 1,
@@ -87,6 +99,18 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 4,
     right: 0,
+    backgroundColor: '#FF8000',
+  },
+  icon: {
+    color: 'yellow',
+  },
+  menu: {
+  },
+  menuItem: {
+    fontSize: 18,
+    color: 'black',
+    padding: 10,
+    fontWeight: '400'
   },
 });
 

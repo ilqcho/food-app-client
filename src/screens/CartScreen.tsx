@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
+import { Divider } from 'react-native-paper';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { StateContext } from '../contexts/StateProvider';
 import ProductList from '../components/ProductList';
 import CartBalance from '../components/CartBalance';
 import { NavigationScreenProps } from '../types';
+import AppButton from '../components/AppButton';
 
 export default function CartScreen ({ navigation }: NavigationScreenProps) {
     const { state } = useContext(StateContext);
@@ -15,14 +17,14 @@ export default function CartScreen ({ navigation }: NavigationScreenProps) {
             {basket.length > 0 ? (
                 <View>
                     <CartBalance quantity={basket.length} />
-                    <TouchableOpacity style={styles.checkoutButton} onPress={() => navigation.navigate('Checkout')}>
-                        <Text style={styles.checkoutButtonText}>Checkout</Text>
-                    </TouchableOpacity>
+                    <AppButton onPress={() => navigation.navigate('Checkout')} title='Checkout'/>
+                    <Divider />
+                    <Text style={styles.title}>Products</Text>
                     <ProductList products={basket} isCartScreen={true} />
                 </View>
             ) : (
                 <View style={styles.textContainer}>
-                    <Text>There are no products</Text>
+                    <Text style={styles.message}>Your cart is empty!</Text>
                 </View>
             )}
         </ScrollView>
@@ -34,16 +36,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: 250,
     },
-    checkoutButton: {
-        backgroundColor: 'blue',
-        borderRadius: 8,
-        padding: 10,
-        margin: 10,
-        alignItems: 'center',
-    },
-    checkoutButtonText: {
-        color: 'white',
-        fontSize: 16,
+    title: {
+        marginRight: 5,
+        alignSelf: 'center',
+        fontSize: 30,
         fontWeight: 'bold',
+        marginTop: 15,
+        marginBottom: 10,
     },
+    message: {
+        alignSelf: 'center',
+        fontSize: 30,
+    }
 });
